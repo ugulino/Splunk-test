@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <Appender name="splunkAppender"
+              class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+        <filter class="org.ugulino.splunk.hec.LogFilter" />
+        <url>${URL}</url>
+        <token>${TOKEN}</token>
+        <disableCertificateValidation>true</disableCertificateValidation>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} [%X{step}] [%X{app-name}] [%X{correlation-id}] [%X{flow-id}] %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+    </Appender>
+    <logger name ="splunkLogger" level="debug">
+        <appender-ref ref="splunkAppender" />
+    </logger>
+</configuration>
